@@ -1,0 +1,23 @@
+{
+  "skill_name": "review-all",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "review-all",
+      "expected_output": "Resolves base (main) automatically, runs codex review --base and a fresh Claude review subagent in parallel on the same base...HEAD diff, merges into one agreement-ranked report with Agreed/Claude-only/Codex-only sections. Does not modify files or post comments.",
+      "files": []
+    },
+    {
+      "id": 1,
+      "prompt": "get a second opinion from codex and claude on my branch before I open the PR — diff against develop",
+      "expected_output": "Uses develop as the base (override honored), runs both reviewers in parallel on the same diff, merged report. Review-only.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "cross-check my changes on this branch with both models",
+      "expected_output": "Triggers review-all, auto-resolves base, dual-model parallel review, merged agreement-ranked report.",
+      "files": []
+    }
+  ]
+}

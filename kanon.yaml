@@ -1,0 +1,71 @@
+version: 1
+instructions:
+  files:
+    - instructions/imported.md
+skills:
+  - name: kelos
+    path: ""
+    source: null
+    enabled: null
+  - name: pre-session-end
+    path: ""
+    source: null
+    enabled: null
+  - name: review-all
+    path: ""
+    source: null
+    enabled: null
+  - name: pr-finish
+    path: ""
+    source: null
+    enabled: null
+mcp:
+  servers: {}
+hooks:
+  - name: stop-1
+    targets: []
+    event: Stop
+    matcher: ""
+    type: command
+    command: bash -c 'WIN=$(tmux display-message -p -t "$TMUX_PANE" "#{window_id}"); tmux set-window-option -t "$WIN" window-status-style "bg=yellow,fg=black,bold"' 2>>/tmp/agent-log
+    args: []
+    timeout: 0
+    async: false
+  - name: notification-1
+    targets: []
+    event: Notification
+    matcher: ""
+    type: command
+    command: bash -c 'WIN=$(tmux display-message -p -t "$TMUX_PANE" "#{window_id}"); tmux set-window-option -t "$WIN" window-status-style "bg=yellow,fg=black,bold"' 2>>/tmp/agent-log
+    args: []
+    timeout: 0
+    async: false
+  - name: preToolUse-1
+    targets: []
+    event: PreToolUse
+    matcher: ""
+    type: command
+    command: bash -c 'WIN=$(tmux display-message -p -t "$TMUX_PANE" "#{window_id}"); tmux set-window-option -t "$WIN" window-status-style "default"' 2>>/tmp/agent-log
+    args: []
+    timeout: 0
+    async: false
+  - name: sessionEnd-1
+    targets: []
+    event: SessionEnd
+    matcher: ""
+    type: command
+    command: bash -c 'WIN=$(tmux display-message -p -t "$TMUX_PANE" "#{window_id}"); tmux set-window-option -t "$WIN" window-status-style "default"' 2>>/tmp/agent-log
+    args: []
+    timeout: 0
+    async: false
+  - name: userPromptSubmit-1
+    targets: []
+    event: UserPromptSubmit
+    matcher: ""
+    type: command
+    command: bash -c 'WIN=$(tmux display-message -p -t "$TMUX_PANE" "#{window_id}"); tmux set-window-option -t "$WIN" window-status-style "default"' 2>>/tmp/agent-log
+    args: []
+    timeout: 0
+    async: false
+metadata:
+  generated_by: kanon import
