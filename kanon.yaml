@@ -19,11 +19,16 @@ skills:
     path: ""
     source: null
     enabled: null
+  - name: api-review
+    path: ""
+    source: null
+    targets:
+      - codex
+    enabled: null
 mcp:
   servers: {}
 hooks:
   - name: stop-1
-    targets: []
     event: Stop
     matcher: ""
     type: command
@@ -32,7 +37,6 @@ hooks:
     timeout: 0
     async: false
   - name: notification-1
-    targets: []
     event: Notification
     matcher: ""
     type: command
@@ -41,7 +45,6 @@ hooks:
     timeout: 0
     async: false
   - name: preToolUse-1
-    targets: []
     event: PreToolUse
     matcher: ""
     type: command
@@ -50,7 +53,6 @@ hooks:
     timeout: 0
     async: false
   - name: sessionEnd-1
-    targets: []
     event: SessionEnd
     matcher: ""
     type: command
@@ -59,7 +61,6 @@ hooks:
     timeout: 0
     async: false
   - name: userPromptSubmit-1
-    targets: []
     event: UserPromptSubmit
     matcher: ""
     type: command

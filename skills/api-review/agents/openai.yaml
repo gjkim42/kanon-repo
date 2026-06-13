@@ -1,0 +1,4 @@
+interface:
+  display_name: "API Review"
+  short_description: "Review Kelos API and CRD design"
+  default_prompt: "Use $api-review to review the current Kelos branch for Kubernetes API design compatibility."
