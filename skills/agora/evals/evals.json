@@ -1,0 +1,61 @@
+{
+  "skill_name": "agora",
+  "evals": [
+    {
+      "id": 0,
+      "name": "cold-start-join-and-announce",
+      "prompt": "Another coding agent is working in this same repo in a separate git worktree right now. Set up our shared agora and introduce yourself, then announce that you're about to refactor the authentication module (you'll be editing files under ml/agents/auth/) so the other agent doesn't collide with you.",
+      "expected_output": "Agent initializes/joins the agora, claims a handle (roster non-empty), and posts an announce-type message naming the auth module / ml/agents/auth path.",
+      "files": [],
+      "seed": null,
+      "expectations": [
+        "An agora was initialized at the agora directory (threads/ and roster.json exist)",
+        "The agent registered a handle in the roster (roster.json has at least one entry)",
+        "At least one message of type 'announce' was posted",
+        "The announcement names the auth module or the ml/agents/auth path"
+      ]
+    },
+    {
+      "id": 1,
+      "name": "read-inbox-and-reply",
+      "prompt": "Check the agora — the other agent working in this repo left a question for you. Read your messages and reply with your recommendation. Context you should use: in this project, Pydantic models shared across services live under shared/, while models used by only one service stay inside that service's package.",
+      "expected_output": "Agent reads its inbox, finds @harang's question in the 'user-model-home' thread, and posts a reply (from the agent, type reply) recommending shared/ given the context, addressed back to @harang.",
+      "files": [],
+      "seed": "harang asks belugu, thread=user-model-home: should the User model live in the auth package or in shared/?",
+      "expectations": [
+        "The agent read its inbox or the seeded thread (found @harang's question)",
+        "The agent posted a reply message of type 'reply' in the user-model-home thread",
+        "The reply is addressed to @harang (to/@mention)",
+        "The reply recommends putting the shared User model under shared/ (grounded in the given context, not fabricated)"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "coordinate-on-conflict",
+      "prompt": "You're about to start editing ml/agents/auth/session.py to add token refresh. Before you dive in, check the agora to see if anyone else is working in that area, and coordinate appropriately.",
+      "expected_output": "Agent discovers @harang's announce claiming session.py, recognizes the conflict, and posts a coordinating message (asks/discusses/defers) to @harang instead of silently editing session.py.",
+      "files": [],
+      "seed": "harang announces, thread=auth-area: actively rewriting ml/agents/auth/session.py and tokens.py; hold off until I post a decide.",
+      "expectations": [
+        "The agent read the agora and found @harang's announcement about session.py",
+        "The agent posted a coordinating message to @harang (ask/discuss/note), not just a fresh unrelated announce",
+        "The agent did NOT proceed to edit session.py in conflict without coordinating",
+        "The coordinating message acknowledges the overlap on session.py"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "api-design-bakeoff",
+      "prompt": "Four agents (including you) are designing the public REST API for a URL-shortener service. The other three have already posted their proposals to the agora. Post your own design, then read all of them, discuss the tradeoffs, and drive the group toward a decision on the best API.",
+      "expected_output": "Agent posts its own proposal to the api-design thread, references the other proposals' specific tradeoffs in a discuss message, and closes with a 'decide' that names a winner and justifies it against the alternatives.",
+      "files": [],
+      "seed": "three proposals in thread=api-design: harang (REST/resource), narae (single RPC envelope), dasom (GraphQL).",
+      "expectations": [
+        "The agent posted its own API proposal to the api-design thread",
+        "The agent's discussion references the other proposals' specific tradeoffs (REST vs RPC-envelope vs GraphQL, or concrete endpoints), showing it read them",
+        "The agent posted a message of type 'decide' that names a single winning design",
+        "The decision is justified against the alternatives, not arbitrary (cites why it beats the others)"
+      ]
+    }
+  ]
+}
