@@ -3,28 +3,12 @@ instructions:
   files:
     - instructions/imported.md
 skills:
-  - name: kelos
-    path: ""
-    source: null
-    enabled: null
-  - name: pre-session-end
-    path: ""
-    source: null
-    enabled: null
-  - name: review-all
-    path: ""
-    source: null
-    enabled: null
-  - name: pr-finish
-    path: ""
-    source: null
-    enabled: null
-  - name: api-review
-    path: ""
-    source: null
-    targets:
-      - codex
-    enabled: null
+  - git:
+      url: https://github.com/kelos-dev/kelos.git
+      ref: main
+      subdir: skills
+    include:
+      - kelos
 mcp:
   servers: {}
 hooks:
