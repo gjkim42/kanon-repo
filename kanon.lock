@@ -1,0 +1,9 @@
+version: 1
+sources:
+  - owner: skill.git.kelos
+    type: git
+    url: https://github.com/kelos-dev/kelos.git
+    ref: main
+    subdir: skills
+    resolved_ref: ab1d637a801c7c7887994f32fdfd35bce50584fd
+    content_sha256: sha256:63f5c1bd8daea444c5d0a4340a159b853799235a8e1b379a327200465f3073da
