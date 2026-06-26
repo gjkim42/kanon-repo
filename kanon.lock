@@ -5,8 +5,8 @@ sources:
     url: https://github.com/kelos-dev/agora.git
     ref: main
     subdir: skills
-    resolved_ref: a1781d611c1d9f63d67535a21824249ebbf91f29
-    content_sha256: sha256:c118011fbef677e22c0cfeb283a0805a5793dc21d8b56f793e48cbc1c808011c
+    resolved_ref: 0e75a2962f7ef16250eb04fc3200164c2661f213
+    content_sha256: sha256:e99b67d28181968eba8623f3d436cc8db7ad2cb6df43e58e6e24672fbbe6e7d5
   - owner: skill.git.kelos
     type: git
     url: https://github.com/kelos-dev/kelos.git
