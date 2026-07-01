@@ -1,7 +1,7 @@
 version: 1
 instructions:
   files:
-    - instructions/imported.md
+    - instructions/AGENTS.md
 skills:
   - git:
       url: https://github.com/kelos-dev/kelos.git
