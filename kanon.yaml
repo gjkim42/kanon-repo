@@ -7,10 +7,6 @@ skills:
       url: https://github.com/kelos-dev/kelos.git
       ref: main
       subdir: skills
-  - git:
-      url: https://github.com/kelos-dev/agora.git
-      ref: main
-      subdir: skills
 mcp:
   servers: {}
 hooks:
