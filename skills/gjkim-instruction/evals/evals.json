@@ -1,0 +1,34 @@
+{
+  "skill_name": "gjkim-instruction",
+  "evals": [
+    {
+      "id": 0,
+      "eval_name": "create-root-doc",
+      "prompt": "I'm kicking off a loop-engineering effort in this repo to build a small service that watches our team's Jira board and posts a daily digest of ticket changes. Hard requirements: it must be read-only against Jira (never modify issues), and the digest must go out once per day on weekdays. One thing we've explicitly ruled out: per-ticket real-time notifications — digest only. We've confirmed we'll write it in Python since the team already has Python Jira tooling. I've got a bunch of other ideas — maybe FastAPI, maybe SQLite for state, maybe deploy it on our k8s cluster — but none of that is decided yet. Set up the root document for this effort.",
+      "expected_output": "A gjkim_instruction.md at the project root containing the goal, the two hard requirements, per-ticket real-time notifications as a non-goal, Python as the only confirmed decision (with date and why), and no implementation details; FastAPI/SQLite/k8s may appear only as deliberately-open items.",
+      "files": [],
+      "assertions": [
+        "gjkim_instruction.md is created in the project root directory",
+        "Both hard requirements (read-only against Jira; digest once per day on weekdays) appear as requirements",
+        "Per-ticket real-time notifications appear as a non-goal, not as a requirement or an open item",
+        "Python is recorded as a confirmed decision with a date and a one-line rationale",
+        "FastAPI, SQLite, and Kubernetes are NOT recorded as requirements or confirmed decisions",
+        "Document contains no task list, progress log, or step-by-step implementation plan",
+        "Document is roughly one page (under about 60 lines)"
+      ]
+    },
+    {
+      "id": 1,
+      "eval_name": "update-confirmed-decision",
+      "prompt": "In this project we keep gjkim_instruction.md as the root document for our loop-engineering effort; it's at the project root. A few updates from today's review (2026-07-10): we confirmed the digest will be delivered as a Slack message to the team channel — that's decided now. I'm also leaning toward SQLite for state storage but haven't committed to it yet. And FYI, iteration 3 finished the Jira client wrapper. Please update the root document.",
+      "expected_output": "The existing gjkim_instruction.md updated: Slack delivery added as a confirmed decision dated 2026-07-10, SQLite NOT added as a decision, no progress note about iteration 3, existing requirements, non-goal, and the Python decision preserved.",
+      "files": ["inputs/gjkim_instruction.md"],
+      "assertions": [
+        "Slack delivery is added as a confirmed decision dated 2026-07-10",
+        "SQLite is NOT added as a confirmed decision or requirement (leaning-toward is not confirmation)",
+        "No progress or status note about iteration 3 / the finished Jira client wrapper is added",
+        "Existing requirements, the non-goal, and the Python confirmed decision are preserved"
+      ]
+    }
+  ]
+}
