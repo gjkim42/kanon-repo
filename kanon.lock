@@ -5,5 +5,5 @@ sources:
     url: https://github.com/kelos-dev/kelos.git
     ref: main
     subdir: skills
-    resolved_ref: 54e81d46706acb45e514f7aa11035eeb173e5530
-    content_sha256: sha256:31c4aa0a8de5f8d7b03536d83c722a6ad7e94ec1af4187d02efcf149d6edda5c
+    resolved_ref: a555556b99051a811f36ad6d0a4c29a84a64d104
+    content_sha256: sha256:dee2e59a0bd8bf8d7a804c925771e34f097a70f32b6e60bdda15acfa0525a86d
