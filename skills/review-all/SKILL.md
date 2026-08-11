@@ -44,10 +44,9 @@ patches, and never tell the user you are about to change code.
 
 ## Not a PR-finishing loop
 
-When the user asks to update code until review comments are handled and checks
-pass, use the `pr-finish` workflow instead. This skill should be run once after
-a batched fix, or at most once more after a second batched fix if valid P0-P2
-findings remain. Do not rerun `review-all` after each individual fix.
+This skill should be run once after a batched fix, or at most once more after a
+second batched fix if valid P0-P2 findings remain. Do not rerun `review-all`
+after each individual fix.
 
 ## Procedure
 
