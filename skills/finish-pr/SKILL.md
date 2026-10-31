@@ -3,15 +3,17 @@ name: finish-pr
 description: >-
   Finish a PR by repeatedly requesting a Kelos review, waiting for its check,
   addressing valid review findings, squashing commits, and updating the PR
-  until the final head is approved. Use when the user says "finish-pr" or asks
-  for this review-and-fix loop. Defaults to the PR for the current branch.
+  until a review approves and that iteration is finalized. Use when the user
+  says "finish-pr" or asks for this review-and-fix loop. Defaults to the PR for
+  the current branch.
 ---
 
 # Finish PR
 
-Repeat the following loop until the final pushed head has an approving Kelos
-review. Use `gh` for GitHub operations. This workflow updates the PR; it does
-not merge it.
+Repeat the following loop until a Kelos review approves, then complete that
+iteration before breaking. An approving verdict must still go through findings,
+squashing, pushing, and PR updates. Use `gh` for GitHub operations. This workflow
+updates the PR; it does not merge it.
 
 ## Establish the target
 
@@ -49,9 +51,10 @@ pending changes before requesting a review so the reviewer sees them.
    the PR title and description to describe the final implementation and
    validation, following the repository's PR template when present.
 5. **Decide whether to repeat.** Break only if this iteration's Kelos verdict
-   approves the final pushed SHA and no valid required findings remain. If
-   fixes or squashing changed the SHA, start another iteration so the final
-   commit is reviewed. Otherwise continue requesting reviews until approved.
+   approves the recorded review head, steps 3 and 4 are complete, and no valid
+   required findings remain. Break even if addressing findings or squashing in
+   this iteration changed the pushed SHA; do not request another review solely
+   to approve the resulting commit. Otherwise continue the loop.
 
 Stop and report the blocker if the review check fails, is cancelled, cannot
 run, or completes without a usable verdict, or if repeated iterations cannot
@@ -59,3 +62,5 @@ make progress on the same unresolved finding. Do not spin on failed tooling
 or silently treat a blocked review as approval.
 
 On success, report the PR link, final commit, approval result, and validation.
+If finalization changed the SHA, identify the reviewed commit separately from
+the final pushed commit.
