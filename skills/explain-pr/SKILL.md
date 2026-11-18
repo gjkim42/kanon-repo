@@ -93,13 +93,18 @@ form. Prefer real output: when it is cheap and has no side effects, such as
 validating against a model, run the sample against the code at the merge base
 and at the head from a scratch location, and say the output is real.
 
-**Flow diagram.** Draw it in ASCII inside a code block so it renders in a
-terminal and in a PR. Keep it to the steps the change touches, one line each.
-Annotate the steps where before and after differ instead of drawing two
-diagrams, and mark where the data is rejected, dropped, or not read yet. When
-the change stays inside one function, skip the diagram and show that
-function's before and after instead. If the user asks for a richer visual and
-the environment can render pages, render it there.
+**Flow diagram.** Where Markdown is rendered, such as a PR or issue on
+GitHub, draw a Mermaid `flowchart` in a `mermaid` block. In a terminal, where
+Mermaid shows only as source, draw the same diagram in ASCII inside a code
+block. Keep it to the steps the change touches, each node a few words plus its
+`file:line`. Label the edges where before and after differ instead of drawing
+two diagrams, and mark where the data is rejected, dropped, or not read yet
+with dashed lines or borders, not fill colors, which are hard to read in dark
+mode. Quote every Mermaid label and keep to basic `flowchart` syntax, since
+GitHub Enterprise may bundle an older Mermaid. When the change stays inside
+one function, skip the diagram and show that function's before and after
+instead. If the user asks for a richer visual and the environment can render
+pages, render it there.
 
 **Screenshots.** For a UI change, link the screenshots from the PR
 description. Describe the visible difference only if you actually viewed the
