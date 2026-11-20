@@ -98,9 +98,51 @@ GitHub, draw a Mermaid `flowchart` in a `mermaid` block. In a terminal, where
 Mermaid shows only as source, draw the same diagram in ASCII inside a code
 block. Keep it to the steps the change touches, each node a few words plus its
 `file:line`. Label the edges where before and after differ instead of drawing
-two diagrams, and mark where the data is rejected, dropped, or not read yet
-with dashed lines or borders, not fill colors, which are hard to read in dark
-mode. Quote every Mermaid label and keep to basic `flowchart` syntax, since
+two diagrams.
+
+Mark each node as new, changed, or unchanged by what the diff does to its
+code. A node whose code is untouched is unchanged even when different data
+now passes through it; its edges show that difference. Start the label of a
+new or changed node with a marker such as 🆕 or ✏️, so the distinction
+survives without color. In Mermaid, also give those nodes distinct border
+colors, and give the edges the change adds the new nodes' color. Mark where
+the data is rejected, dropped, or not read yet with dashed lines or borders.
+Use borders rather than fill colors, which are hard to read in dark mode, and
+explain the markers and line styles in one line beneath the diagram.
+
+For example, for a change that adds an optional `tags` field to a request,
+validates it, and redacts it in logs, but does not use it yet:
+
+```mermaid
+flowchart TD
+    req["🆕 tags in the request<br/>models.py:42"]
+    gate["Gateway validation<br/>gateway.py:88"]
+    gone("Dropped")
+    svc["Service validation<br/>service.py:120"]
+    bad("Request rejected")
+    log["✏️ Log redaction<br/>logging.py:15"]
+    use["Business logic<br/>service.py:160"]
+
+    req --> gate
+    gate -.->|"Before: unknown field"| gone
+    gate ==>|"After: kept"| svc
+    svc -->|"Any invalid entry"| bad
+    svc --> log
+    svc -.->|"Not read yet"| use
+
+    classDef added stroke:#2da44e,stroke-width:3px
+    classDef changed stroke:#bf8700,stroke-width:3px
+    classDef unused stroke-dasharray:5 5
+    class req added
+    class log changed
+    class gone unused
+    linkStyle 2,3 stroke:#2da44e,stroke-width:3px
+```
+
+_🆕 green: new · ✏️ amber: changed · unmarked: code unchanged · green
+arrows: paths the change adds · dashed: where `tags` is not used._
+
+Quote every Mermaid label and keep to basic `flowchart` syntax, since
 GitHub Enterprise may bundle an older Mermaid. When the change stays inside
 one function, skip the diagram and show that function's before and after
 instead. If the user asks for a richer visual and the environment can render
